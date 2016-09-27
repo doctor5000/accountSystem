@@ -1,13 +1,13 @@
+<?php include "start.php"; ?> <!-- This should run a valid mysql_connect() command -->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<?php include "index.php"; ?> <!-- This should run a valid mysql_connect() command -->
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="Log in to samhirsch.net">
 		<meta name="author" content="Sam Hirsch">
-		<title>Sam Hirsch | Log In</title>
+		<title id="title">Sam Hirsch</title>
 		<link href="../jumbotron.css" rel="stylesheet">
 		<link href="../css/bootstrap.min.css" rel="stylesheet">
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -90,7 +90,7 @@
 			</footer>
 		</div> 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-		<script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')</script>
-		<script src="js/bootstrap.min.js"></script>
+		<script>window.jQuery || document.write('<script src="../js/vendor/jquery.min.js"><\/script>')</script>
+		<script src="../js/bootstrap.min.js"></script>
 	</body>
 </html>
