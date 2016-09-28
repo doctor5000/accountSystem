@@ -60,10 +60,53 @@
 
 		<div class="jumbotron">
 			<div class="container">
-				<h1 style="color: #FFFFFF">Log in to Samhirsch.net</h1>
+				<h1 style="color: #FFFFFF">Members of Samhirsch.net</h1>
 			</div>
 		</div>
-		<div class="container">
+<div class="container">
+		<?php
+			if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']))
+			{
+				?>
+				<div class="row">
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
+						<h1>Member Area</h1>
+     					<p>You are <code><?=$_SESSION['Username']?></code> and your email address is <code><?=$_SESSION['EmailAddress']?></code>.</p>
+     				</div>
+     				<div class="col-md-4">
+     			</div>
+				<?php
+			}
+			elseif(!empty($_POST['username']) && !empty($_POST['password']))
+			{
+			    $username = mysql_real_escape_string($_POST['username']);
+    			$password = md5(mysql_real_escape_string($_POST['password']));
+     
+    			$checklogin = mysql_query("SELECT * FROM users WHERE Username = '".$username."' AND Password = '".$password."'");
+    	 
+    			if(mysql_num_rows($checklogin) == 1)
+    			{
+    			    $row = mysql_fetch_array($checklogin);
+        			$email = $row['EmailAddress'];
+        	 
+        			$_SESSION['Username'] = $username;
+        			$_SESSION['EmailAddress'] = $email;
+        			$_SESSION['LoggedIn'] = 1;
+         
+        			echo "<h1>Success</h1>";
+        			echo "<p>We are now redirecting you to the member area.</p>";
+        			echo "<meta http-equiv='refresh' content='=2;index.php' />";
+    			}
+    			else
+    			{
+    			    echo "<h1>Error</h1>";
+    			    echo "<p>Sorry, your account could not be found. Please <a href=\"index.php\">click here to try again</a>.</p>";
+    			}
+			}
+			else
+			{
+			?>			
 			<div class="row">
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
@@ -83,6 +126,9 @@
 				</div>
 				<div class="col-md-4"></div>
 			</div>
+			<?php
+			}
+			?>
 			<div class="row"></div>
 			<hr>
 			<footer>
